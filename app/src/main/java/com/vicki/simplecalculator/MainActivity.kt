@@ -11,6 +11,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -68,26 +69,20 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                         Row() {
-                            Button(onClick = {
+                            numButton(num = 7.0) {
                                 display = appendInput(display, "7")
                                 num1 = if (num1 == null) 7.0 else num1
                                 num2 = if (num1 != null) 7.0 else null
-                            }, modifier = Modifier.size(80.dp)) {
-                                Text(text = "7")
                             }
-                            Button(onClick = {
+                            numButton(num = 8.0) {
                                 display = appendInput(display, "8")
                                 num1 = if (num1 == null) 8.0 else num1
                                 num2 = if (num1 != null) 8.0 else null
-                            }, modifier = Modifier.size(80.dp)) {
-                                Text(text = "8")
                             }
-                            Button(onClick = {
+                            numButton(num = 9.0) {
                                 display = appendInput(display, "9")
                                 num1 = if (num1 == null) 9.0 else num1
                                 num2 = if (num1 != null) 9.0 else null
-                            }, modifier = Modifier.size(80.dp)) {
-                                Text(text = "9")
                             }
                             Button(onClick = {
                                 operation = "*"
@@ -97,26 +92,20 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                         Row() {
-                            Button(onClick = {
+                            numButton(num = 4.0) {
                                 display = appendInput(display, "4")
                                 num1 = if (num1 == null) 4.0 else num1
                                 num2 = if (num1 != null) 4.0 else null
-                            }, modifier = Modifier.size(80.dp)) {
-                                Text(text = "4")
                             }
-                            Button(onClick = {
+                            numButton(num = 5.0) {
                                 display = appendInput(display, "5")
                                 num1 = if (num1 == null) 5.0 else num1
                                 num2 = if (num1 != null) 5.0 else null
-                            }, modifier = Modifier.size(80.dp)) {
-                                Text(text = "5")
                             }
-                            Button(onClick = {
+                            numButton(num = 6.0) {
                                 display = appendInput(display, "6")
                                 num1 = if (num1 == null) 6.0 else num1
                                 num2 = if (num1 != null) 6.0 else null
-                            }, modifier = Modifier.size(80.dp)) {
-                                Text(text = "6")
                             }
                             Button(onClick = {
                                 operation = "-"
@@ -126,26 +115,20 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                         Row() {
-                            Button(onClick = {
+                            numButton(num = 1.0) {
                                 display = appendInput(display, "1")
                                 num1 = if (num1 == null) 1.0 else num1
                                 num2 = if (num1 != null) 1.0 else null
-                            }, modifier = Modifier.size(80.dp)) {
-                                Text(text = "1")
                             }
-                            Button(onClick = {
+                            numButton(num = 2.0) {
                                 display = appendInput(display, "2")
                                 num1 = if (num1 == null) 2.0 else num1
                                 num2 = if (num1 != null) 2.0 else null
-                            }, modifier = Modifier.size(80.dp)) {
-                                Text(text = "2")
                             }
-                            Button(onClick = {
+                            numButton(num = 3.0) {
                                 display = appendInput(display, "3")
                                 num1 = if (num1 == null) 3.0 else num1
                                 num2 = if (num1 != null) 3.0 else null
-                            }, modifier = Modifier.size(80.dp)) {
-                                Text(text = "3")
                             }
                             Button(onClick = {
                                 operation = "+"
@@ -158,12 +141,10 @@ class MainActivity : ComponentActivity() {
                             Button(onClick = { /*TODO*/ }, modifier = Modifier.size(80.dp)) {
                                 Text(text = "duck")
                             }
-                            Button(onClick = {
+                            numButton(num = 0.0) {
                                 display = appendInput(display, "0")
                                 num1 = if (num1 == null) 0.0 else num1
                                 num2 = if (num1 != null) 0.0 else null
-                            }, modifier = Modifier.size(80.dp)) {
-                                Text(text = "0")
                             }
                             Button(onClick = { /*TODO*/ }, modifier = Modifier.size(80.dp)) {
                                 Text(text = ".")
@@ -184,6 +165,15 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Composable
+fun numButton(
+    num: Double,
+    onClick: () -> Unit
+) {
+    Button(onClick = onClick, modifier = Modifier.size(80.dp)) {
+        Text(text = num.toInt().toString())
+    }
+}
 
 private fun appendInput(string: String, newString: String): String {
     return string + newString
